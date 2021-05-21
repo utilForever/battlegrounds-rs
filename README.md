@@ -35,7 +35,7 @@ The class is licensed under the [MIT License](http://opensource.org/licenses/MIT
 Copyright &copy; 2021 battlegrounds-rs Team
 
   * [Chris Ohk](http://www.github.com/utilForever)
-  * [Jenoghoon Rho](https://github.com/overthestream)
+  * [Jeonghoon Rho](https://github.com/overthestream)
   * [Sangwook Lee](https://github.com/vecum0814)
   * [Seungmin Cha](https://github.com/Virtuso1225)
 
