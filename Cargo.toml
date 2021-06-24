@@ -9,7 +9,7 @@ authors = [
 ]
 edition = "2018"
 description = "Hearthstone:Battlegrounds simulator using Rust with some reinforcement learning"
-keywords = [ "hearthstone", "battlegrounds", "simulation", "reinforcement learning" ]
+keywords = [ "hearthstone", "battlegrounds", "simulation", "reinforcement", "rl" ]
 
 repository = "https://github.com/utilforever/battlegrounds-rs"
 
