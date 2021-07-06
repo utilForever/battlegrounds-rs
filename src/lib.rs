@@ -3,7 +3,7 @@ use specs_derive::Component;
 
 #[allow(dead_code)]
 struct State {
-    ecs: World
+    ecs: World,
 }
 
 #[allow(dead_code)]
@@ -19,12 +19,13 @@ mod test {
     fn test_ecs() {
         use super::*;
 
-        let mut gs = State {
-            ecs: World::new()
-        };
+        let mut gs = State { ecs: World::new() };
         gs.ecs.register::<Position>();
 
-        gs.ecs.create_entity().with(Position {x: 40, y: 25 }).build();
+        gs.ecs
+            .create_entity()
+            .with(Position { x: 40, y: 25 })
+            .build();
 
         let positions = gs.ecs.read_storage::<Position>();
         for pos in (&positions).join() {
