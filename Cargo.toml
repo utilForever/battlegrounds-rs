@@ -19,3 +19,5 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+specs = "0.17.0"
+specs-derive = "0.4.1"
