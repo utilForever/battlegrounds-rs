@@ -39,7 +39,12 @@ impl CardLoader {
         // Parse card data from an value
         let cards: &Vec<Value> = json_str.as_array().unwrap();
         for card in cards {
-            println!("{}", card["name"].as_str().unwrap());
+            if card["set"].as_str().unwrap() == "BATTLEGROUNDS"
+                || !card["battlegroundsNormalDbfId"].is_null()
+                || !card["battlegroundsPremiumDbfId"].is_null()
+            {
+                println!("{}", card["name"].as_str().unwrap());
+            }
         }
     }
 }
