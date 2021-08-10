@@ -1,0 +1,21 @@
+[package]
+name = "battlegrounds-console"
+version = "0.0.1"
+authors = [
+    "Chris Ohk <utilforever@gmail.com>",
+    "Jenoghoon Rho <njhnjh02@naver.com>",
+    "Sangwook Lee <vecum0814@korea.ac.kr>",
+    "Seungmin Cha <dominico1225@korea.ac.kr>"
+]
+edition = "2018"
+description = "Hearthstone:Battlegrounds simulator console program"
+keywords = [ "hearthstone", "battlegrounds", "simulation" ]
+
+repository = "https://github.com/utilforever/battlegrounds-rs"
+
+[dependencies.battlegrounds-rs]
+path = ".."
+
+[[bin]]
+name = "battlegrounds-console"
+path = "battlegrounds_console.rs"
