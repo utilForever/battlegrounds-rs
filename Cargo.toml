@@ -16,7 +16,8 @@ repository = "https://github.com/utilforever/battlegrounds-rs"
 readme = "README.md"
 license = "MIT"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = [ "lib" ]
 
 [dependencies]
 specs = "0.17.0"
