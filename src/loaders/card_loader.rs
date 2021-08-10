@@ -12,7 +12,7 @@ pub struct CardLoader {
 impl CardLoader {
     pub fn load(world: &World) {
         let mut res_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        res_path.push("../res/cards.json");
+        res_path.push("res/cards.json");
 
         // Create a path to the desired file
         let path: &Path = Path::new(res_path.as_path());
