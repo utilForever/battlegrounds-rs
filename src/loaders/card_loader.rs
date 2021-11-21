@@ -1,9 +1,12 @@
+use crate::enums::card_set::CardSet;
+
 use serde_json::Value;
 use specs::prelude::*;
 
 use std::fs::File;
 use std::io::Read;
 use std::path::{Display, Path, PathBuf};
+use std::str::FromStr;
 
 pub struct CardLoader {
     // Has nothing
@@ -39,11 +42,14 @@ impl CardLoader {
         // Parse card data from an value
         let cards: &Vec<Value> = json_str.as_array().unwrap();
         for card in cards {
-            if card["set"].as_str().unwrap() == "BATTLEGROUNDS"
-                || !card["battlegroundsNormalDbfId"].is_null()
-                || !card["battlegroundsPremiumDbfId"].is_null()
-            {
-                println!("{}", card["name"].as_str().unwrap());
+            let card_set = if card["set"].is_null() {
+                1
+            } else {
+                CardSet::from_str(card["set"].as_str().unwrap()).unwrap() as i32
+            };
+
+            if card_set == CardSet::LETTUCE as i32 {
+                continue;
             }
         }
     }
