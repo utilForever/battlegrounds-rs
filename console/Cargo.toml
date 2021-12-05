@@ -21,5 +21,4 @@ name = "battlegrounds-console"
 path = "battlegrounds_console.rs"
 
 [dependencies]
-specs = "0.17.0"
-specs-derive = "0.4.1"
+legion = "0.4.0"

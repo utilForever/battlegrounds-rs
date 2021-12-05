@@ -1,7 +1,7 @@
 use crate::enums::{card_set::CardSet, card_type::CardType, game_tag::GameTag, race::Race};
 
+use legion::*;
 use serde_json::Value;
-use specs::prelude::*;
 
 use std::collections::HashMap;
 use std::fs::File;

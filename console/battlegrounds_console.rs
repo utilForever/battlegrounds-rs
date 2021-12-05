@@ -1,9 +1,9 @@
 use battlegrounds_rs::loaders::card_loader::CardLoader;
 
-use specs::prelude::*;
+use legion::*;
 
 fn main() {
-    let world = World::new();
+    let world = World::default();
 
     CardLoader::load(&world);
 }
