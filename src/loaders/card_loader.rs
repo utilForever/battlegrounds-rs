@@ -1,3 +1,4 @@
+use crate::components::card::Card;
 use crate::enums::{card_set::CardSet, card_type::CardType, game_tag::GameTag, race::Race};
 
 use legion::*;
@@ -14,7 +15,7 @@ pub struct CardLoader {
 }
 
 impl CardLoader {
-    pub fn load(world: &World) {
+    pub fn load(world: &mut World) {
         let mut res_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
         res_path.push("res/cards.json");
 
@@ -53,7 +54,7 @@ impl CardLoader {
                 continue;
             }
 
-            let id = card["id"].as_str();
+            let id = card["id"].as_str().unwrap();
             let dbf_id = if card["dbfID"].is_null() {
                 0
             } else {
@@ -114,6 +115,17 @@ impl CardLoader {
                 let game_tag = GameTag::from_str(mechanic.as_str().unwrap()).unwrap();
                 game_tags.insert(game_tag, 1);
             }
+
+            let _ = world.push((Card {
+                id: String::from(id),
+                dbf_id,
+                normal_dbf_id,
+                premium_dbf_id,
+                name: String::from(name),
+                text: String::from(text),
+                game_tags,
+                is_cur_hero: is_battlegrounds_hero,
+            },));
         }
     }
 }

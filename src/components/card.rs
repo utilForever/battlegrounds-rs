@@ -2,16 +2,16 @@ use crate::enums::game_tag::GameTag;
 
 use std::collections::HashMap;
 
-struct Card {
-    id: String,
-    dbf_id: i32,
-    normal_dbf_id: i32,
-    premium_dbf_id: i32,
+pub struct Card {
+    pub id: String,
+    pub dbf_id: i32,
+    pub normal_dbf_id: i32,
+    pub premium_dbf_id: i32,
 
-    name: String,
-    text: String,
+    pub name: String,
+    pub text: String,
 
-    game_tags: HashMap<GameTag, i32>,
+    pub game_tags: HashMap<GameTag, i32>,
 
-    is_cur_hero: bool,
+    pub is_cur_hero: bool,
 }
