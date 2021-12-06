@@ -119,6 +119,13 @@ impl CardLoader {
                 }
             }
 
+            game_tags.insert(GameTag::CARD_SET, card_set as i32);
+            game_tags.insert(GameTag::CARDTYPE, card_type as i32);
+            game_tags.insert(GameTag::CARDRACE, race as i32);
+            game_tags.insert(GameTag::TECH_LEVEL, tech_level);
+            game_tags.insert(GameTag::ATK, attack);
+            game_tags.insert(GameTag::HEALTH, health);
+
             let _ = world.push((Card {
                 id: String::from(id),
                 dbf_id,
@@ -137,9 +144,9 @@ impl CardLoader {
 mod tests {
     #[test]
     fn number_of_cards() {
-        use legion::*;
         use crate::components::card::Card;
         use crate::loaders::card_loader::CardLoader;
+        use legion::*;
 
         let mut world = World::default();
 
