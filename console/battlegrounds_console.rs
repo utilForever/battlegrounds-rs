@@ -5,5 +5,5 @@ use legion::*;
 fn main() {
     let mut world = World::default();
 
-    CardLoader::load(&world);
+    CardLoader::load(&mut world);
 }
