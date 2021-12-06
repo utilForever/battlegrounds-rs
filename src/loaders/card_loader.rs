@@ -132,3 +132,21 @@ impl CardLoader {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn number_of_cards() {
+        use legion::*;
+        use crate::components::card::Card;
+        use crate::loaders::card_loader::CardLoader;
+
+        let mut world = World::default();
+
+        CardLoader::load(&mut world);
+
+        let mut query = <&Card>::query();
+
+        assert_eq!(query.iter(&world).count(), 13100);
+    }
+}
