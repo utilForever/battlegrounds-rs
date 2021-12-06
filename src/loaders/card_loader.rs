@@ -58,17 +58,17 @@ impl CardLoader {
             let dbf_id = if card["dbfID"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["dbfID"].as_str().unwrap()).unwrap()
+                card["dbfID"].as_i64().unwrap() as i32
             };
             let normal_dbf_id = if card["battlegroundsNormalDbfId"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["battlegroundsNormalDbfId"].as_str().unwrap()).unwrap()
+                card["battlegroundsNormalDbfId"].as_i64().unwrap() as i32
             };
             let premium_dbf_id = if card["battlegroundsPremiumDbfId"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["battlegroundsPremiumDbfId"].as_str().unwrap()).unwrap()
+                card["battlegroundsPremiumDbfId"].as_i64().unwrap() as i32
             };
             let is_battlegrounds_hero = !card["battlegroundsHero"].is_null();
 
@@ -97,17 +97,17 @@ impl CardLoader {
             let tech_level = if card["techLevel"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["techLevel"].as_str().unwrap()).unwrap()
+                card["techLevel"].as_i64().unwrap() as i32
             };
             let attack = if card["attack"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["attack"].as_str().unwrap()).unwrap()
+                card["attack"].as_i64().unwrap() as i32
             };
             let health = if card["health"].is_null() {
                 0
             } else {
-                FromStr::from_str(card["health"].as_str().unwrap()).unwrap()
+                card["health"].as_i64().unwrap() as i32
             };
 
             let mut game_tags = HashMap::new();
