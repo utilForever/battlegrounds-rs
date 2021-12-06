@@ -111,9 +111,12 @@ impl CardLoader {
             };
 
             let mut game_tags = HashMap::new();
-            for mechanic in card["mechanics"].as_array().unwrap().iter() {
-                let game_tag = GameTag::from_str(mechanic.as_str().unwrap()).unwrap();
-                game_tags.insert(game_tag, 1);
+
+            if card["mechanics"].is_array() {
+                for mechanic in card["mechanics"].as_array().unwrap().iter() {
+                    let game_tag = GameTag::from_str(mechanic.as_str().unwrap()).unwrap();
+                    game_tags.insert(game_tag, 1);
+                }
             }
 
             let _ = world.push((Card {
