@@ -1,0 +1,43 @@
+use strum_macros::EnumString;
+
+/// An enumerator for identifying the race of the card.
+#[allow(non_camel_case_types)]
+#[derive(EnumString)]
+pub enum Race {
+    INVALID,
+    BLOODELF,
+    DRAENEI,
+    DWARF,
+    GNOME,
+    GOBLIN,
+    HUMAN,
+    NIGHTELF,
+    ORC,
+    TAUREN,
+    TROLL,
+    UNDEAD,
+    WORGEN,
+    GOBLIN2,
+    MURLOC,
+    DEMON,
+    SCOURGE,
+    MECHANICAL,
+    ELEMENTAL,
+    OGRE,
+    BEAST,
+    TOTEM,
+    NERUBIAN,
+    PIRATE,
+    DRAGON,
+    BLANK,
+    ALL,
+    EGG,
+    QUILBOAR,
+    CENTAUR,
+    FURBOLG,
+    HIGHELF,
+    TREANT,
+    OWLKIN,
+    HALFORC,
+    LOCK,
+}
