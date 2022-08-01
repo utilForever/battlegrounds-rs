@@ -32,8 +32,8 @@ struct Card {
 }
 
 fn main() {
-    let path = Path::new("/Users/raylee/Rust/json_reader/src/cards_kor.json");
-    let file = File::open(json_file_path).expect("file not found");
+    let path = Path::new("res/cards_kor.json");
+    let file = File::open(path).expect("file not found");
     
     let mut cards = Vec::new();
 
@@ -47,11 +47,10 @@ fn main() {
         //println!("dbfId: {}", card.dbf_id)
     }
 
-   // for card in &battleground_cards {
- 
-   //     println!("Card Name: {}", card.name)
-   // }
-    println!("{}", cards.len())
+    println!("{}", cards.len());
 
+    let manually_counted_cards = 219;
+
+    println!("The latest number of cards we checked is {} and in this file we have {} cards", manually_counted_cards, cards.len() )
 }
 
