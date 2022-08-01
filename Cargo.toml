@@ -24,8 +24,9 @@ members = [ "console" ]
 
 [dependencies]
 lazy_static = "1.4.0"
-serde_json = "1.0.64"
+serde_json = "1.0"
 legion = "0.4.0"
 strum = "0.23"
 strum_macros = "0.23"
-serde = { version = "1.0.104", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+
