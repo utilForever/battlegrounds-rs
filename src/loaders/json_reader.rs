@@ -1,9 +1,6 @@
 use std::path::Path;
 use std::fs::File;
 
-#[cfg(feature = "serde")]
-extern crate serde;
-
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -34,23 +31,15 @@ struct Card {
 fn main() {
     let path = Path::new("res/cards_kor.json");
     let file = File::open(path).expect("file not found");
-    
     let mut cards = Vec::new();
 
-
-    let raw_cards:Vec<Card> = serde_json::from_reader(file).expect("Invalid format");
+    let raw_cards: Vec<Card> = serde_json::from_reader(file).expect("Invalid format");
     
     for card in raw_cards.iter() {
         if card.battlegrounds_premium_dbf_id.is_some() {
             cards.push(card)
         }
-        //println!("dbfId: {}", card.dbf_id)
     }
-
     println!("{}", cards.len());
-
-    let manually_counted_cards = 219;
-
-    println!("The latest number of cards we checked is {} and in this file we have {} cards", manually_counted_cards, cards.len() )
 }
 
