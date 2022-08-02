@@ -28,7 +28,7 @@ jobs:
           RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
           RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
       - name: Install grcov
-        run: curl -L https://github.com/mozilla/grcov/releases/latest/download/grcov-linux-x86_64.tar.bz2 | tar jxf -
+        run: curl -L https://github.com/mozilla/grcov/releases/download/v0.8.11/grcov-x86_64-unknown-linux-gnu.tar.bz2 | tar jxf -
       - name: Run grcov
         run: |
           mkdir coverage
@@ -36,7 +36,7 @@ jobs:
                   --excl-line '#\[|=> panic!|unreachable!|Io\(std::io::Error\)' \
                   --excl-br-line '#\[|=> panic!|unreachable!|assert_..!|assert_approx_eq!' -o ./coverage/lcov.info
       - name: Upload to Codecov
-        uses: codecov/codecov-action@v1.0.2
+        uses: codecov/codecov-action@v3
         with:
-          file: ${{ steps.coverage.outputs.report }}
           token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
