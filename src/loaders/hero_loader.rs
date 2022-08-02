@@ -43,7 +43,7 @@ impl HeroLoader {
             let random = rand::thread_rng().gen_range(1..101);
             let mut picks: Vec<&Card> = Vec::new();
             for j in 1..5 {
-                let max = heroes.iter().count();
+                let max = heroes.len();
                 let index = (random * j) % max;
                 picks.push(heroes.remove(index));
             }
@@ -61,7 +61,7 @@ impl HeroLoader {
                 index += 1;
                 pick_map_out.insert(key, i.name.to_string());
             }
-            print!("\n");
+            println!("");
         }
         /***************** */
         // TODO :: pick and push
@@ -94,12 +94,11 @@ mod tests {
             }
         }
         assert_eq!(hero_count, 64);
-        assert_eq!(pick_map.iter().count(), 32);
+        assert_eq!(pick_map.len(), 32);
     }
 
     #[test]
     fn redundant_heroes() {
-        use crate::components::card::Card;
         use crate::loaders::card_loader::CardLoader;
         use crate::loaders::hero_loader::HeroLoader;
         use legion::*;
@@ -120,8 +119,8 @@ mod tests {
                 heroes.push(card);
             }
         }
-        for i in 0..heroes.iter().count() {
-            for j in i + 1..heroes.iter().count() {
+        for i in 0..heroes.len() {
+            for j in i + 1..heroes.len() {
                 assert_ne!(heroes[i], heroes[j]);
             }
         }
