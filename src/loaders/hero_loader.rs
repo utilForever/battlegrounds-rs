@@ -17,7 +17,24 @@ impl HeroLoader {
         for card in query.iter(world) {
             if card.is_cur_hero {
                 // TODO :: race ban check logic
-                heroes.push(card);
+                let bans = ["PIRATE", "DEMON", "DRAGON"];
+                let hero_race_map: HashMap<&str, Vec<&String>> = HashMap::new();
+                let mut is_banned = false;
+                for ban in bans {
+                    match hero_race_map.get(ban) {
+                        Some(vec) => {
+                            if vec.contains(&&card.name) {
+                                is_banned = true;
+                            }
+                        }
+                        None => {
+                            panic!("Hero Ban Map is Incorrect!")
+                        }
+                    }
+                }
+                if is_banned == false {
+                    heroes.push(card);
+                }
             }
         }
 
