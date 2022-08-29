@@ -28,7 +28,7 @@ struct Card {
     r#type: String,
 }
 
-fn main() {
+pub fn card_container() -> Vec<Card> {
     let path = Path::new("res/cards_kor.json");
     let file = File::open(path).expect("file not found");
     let mut cards = Vec::new();
@@ -37,9 +37,9 @@ fn main() {
     
     for card in raw_cards.iter() {
         if card.battlegrounds_premium_dbf_id.is_some() {
-            cards.push(card)
+            cards.push(card.clone())
         }
     }
-    println!("{}", cards.len());
+    cards
 }
 
