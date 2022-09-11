@@ -1,5 +1,6 @@
 use crate::components::card::Card;
 
+use crate::enums::game_race::GameRace;
 use legion::*;
 use std::collections::HashMap;
 
@@ -10,17 +11,32 @@ pub struct HeroLoader {
 }
 
 impl HeroLoader {
-    pub fn load(world: &mut World, pick_map_out: &mut HashMap<String, String>) {
+    pub fn load(world: &mut World) {
         let mut query = <&Card>::query();
         let mut heroes: Vec<&Card> = Vec::new();
-
+        let mut rng = rand::thread_rng();
+        const RACES: [&str; 8] = [
+            "MURLOC",
+            "DEMON",
+            "MECHANICAL",
+            "ELEMENTAL",
+            "BEAST",
+            "PIRATE",
+            "DRAGON",
+            "QUILBOAR",
+        ];
+        const BAN_COUNT: usize = 3;
+        let random_indices = rand::seq::index::sample(&mut rng, RACES.len(), BAN_COUNT).into_vec();
+        let mut bans: Vec<&str> = Vec::new();
+        for index in random_indices {
+            bans.push(RACES[index])
+        }
         for card in query.iter(world) {
             if card.is_cur_hero {
                 // TODO :: race ban check logic
-                let bans = ["PIRATE", "DEMON", "DRAGON"];
                 let hero_race_map: HashMap<&str, Vec<&String>> = HashMap::new();
                 let mut is_banned = false;
-                for ban in bans {
+                for ban in &bans {
                     match hero_race_map.get(ban) {
                         Some(vec) => {
                             if vec.contains(&&card.name) {
@@ -39,32 +55,27 @@ impl HeroLoader {
         }
 
         let mut pick_map: HashMap<String, Vec<&Card>> = HashMap::new();
-        for i in 1..9 {
-            let random = rand::thread_rng().gen_range(1..101);
+        let mut rng = rand::thread_rng();
+        const PLAYERS: usize = 8;
+        const AVAILABLE_CHOICES: usize = 4;
+        let random_indices =
+            rand::seq::index::sample(&mut rng, heroes.len(), PLAYERS * AVAILABLE_CHOICES)
+                .into_vec();
+        for i in 0..8 {
             let mut picks: Vec<&Card> = Vec::new();
-            for j in 1..5 {
-                let max = heroes.len();
-                let index = (random * j) % max;
-                picks.push(heroes.remove(index));
+            for j in 0..4 {
+                match heroes.get(random_indices[i * AVAILABLE_CHOICES + j]) {
+                    Some(pick) => picks.push(pick),
+                    None => {
+                        panic!("Some kinds of pick error")
+                    }
+                }
             }
-            let key = format!("Player{}", i);
+            let key = format!("Player{}", i + 1);
             pick_map.insert(key, picks);
         }
 
-        /***************** */
-        for v in pick_map {
-            println!("{}", v.0);
-            let mut index = 1;
-            for i in v.1.iter() {
-                println!("{}", i.name);
-                let key = format!("{} - {}", v.0, index);
-                index += 1;
-                pick_map_out.insert(key, i.name.to_string());
-            }
-            println!("");
-        }
-        /***************** */
-        // TODO :: pick and push
+        // world.push(pick_map);
     }
 }
 
@@ -83,7 +94,7 @@ mod tests {
         let mut pick_map: HashMap<String, String> = HashMap::new();
 
         CardLoader::load(&mut world);
-        HeroLoader::load(&mut world, &mut pick_map);
+        HeroLoader::load(&mut world);
 
         let mut query = <&Card>::query();
 
@@ -109,7 +120,7 @@ mod tests {
         let mut pick_map: HashMap<String, String> = HashMap::new();
 
         CardLoader::load(&mut world);
-        HeroLoader::load(&mut world, &mut pick_map);
+        HeroLoader::load(&mut world);
 
         let mut heroes: Vec<&String> = Vec::new();
         for i in 1..9 {
