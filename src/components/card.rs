@@ -15,3 +15,21 @@ pub struct Card {
 
     pub is_cur_hero: bool,
 }
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Hero;
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Minion {
+    pub attack: u64,
+    pub battlegrounds_premium_dbf_id: u64,
+    pub card_class: String,
+    pub dbf_id: u32,
+    pub health: u64,
+    pub id: String,
+    pub mechanics: Vec<String>,
+    pub name: String,
+    pub race: String,
+    pub referenced_tags: Vec<String>,
+    pub tech_level: u8,
+}
