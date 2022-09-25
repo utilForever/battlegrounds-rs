@@ -24,7 +24,7 @@ impl CardLoader {
         let display: Display = path.display();
 
         // Open the path in read-only mode, returns `io::Result<File>`
-        let mut file: File = match File::open(&path) {
+        let mut file: File = match File::open(path) {
             Err(why) => panic!("couldn't open {}: {}", display, why),
             Ok(file) => file,
         };

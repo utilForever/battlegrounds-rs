@@ -16,10 +16,10 @@ pub struct Card {
     pub is_cur_hero: bool,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Hero;
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Minion {
     pub attack: u64,
     pub battlegrounds_premium_dbf_id: u64,
